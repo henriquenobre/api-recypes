@@ -2,21 +2,21 @@ const express = require("express");
 
 const router = express.Router();
 
-const tasksController = require("./controllers/tasksController");
-const tasksMiddleware = require("./middlewares/tasksMiddleware");
+const recypesController = require("./controllers/recypesController");
+const recypesMiddleware = require("./middlewares/recypesMiddleware");
 
-router.get("/recypes", tasksController.getAll);
+router.get("/recypes", recypesController.getAll);
 router.post(
   "/recypes",
-  tasksMiddleware.validateFieldTitle,
-  tasksController.createTask
+  recypesMiddleware.validateFieldTitle,
+  recypesController.createTask
 );
-router.delete("/recypes/:id", tasksController.deleteTask);
+router.delete("/recypes/:id", recypesController.deleteTask);
 router.put(
   "/recypes/:id",
-  tasksMiddleware.validateFieldTitle,
-  tasksMiddleware.validateFieldStatus,
-  tasksController.updateTask
+  recypesMiddleware.validateFieldTitle,
+  recypesMiddleware.validateFieldStatus,
+  recypesController.updateTask
 );
 
 module.exports = router;
