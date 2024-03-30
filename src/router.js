@@ -9,14 +9,14 @@ router.get("/recypes", recypesController.getAll);
 router.post(
   "/recypes",
   recypesMiddleware.validateFieldTitle,
-  recypesController.createTask
+  recypesController.createRecype
 );
-router.delete("/recypes/:id", recypesController.deleteTask);
+router.delete("/recypes/:id", recypesController.deleteRecype);
 router.put(
   "/recypes/:id",
   recypesMiddleware.validateFieldTitle,
   recypesMiddleware.validateFieldStatus,
-  recypesController.updateTask
+  recypesController.updateRecype
 );
 
 module.exports = router;

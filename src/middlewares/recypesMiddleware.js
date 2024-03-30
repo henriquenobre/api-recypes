@@ -1,14 +1,18 @@
 const validateFieldTitle = (request, response, next) => {
   const { body } = request;
 
-  if (body.title === undefined) {
+  if (
+    body.title === undefined ||
+    body.ingredients === undefined ||
+    body.method === undefined
+  ) {
     return response
       .status(400)
-      .json({ message: "The field 'title' is required" });
+      .json({ message: "The fields 'title, ingredients, method' is required" });
   }
 
-  if (body.title === "") {
-    return response.status(400).json({ message: "title cannot be empty" });
+  if (body.title === "" || body.ingredients === "" || body.method === "") {
+    return response.status(400).json({ message: "fields cannot be empty" });
   }
 
   next();

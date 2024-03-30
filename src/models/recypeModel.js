@@ -5,40 +5,46 @@ const getAll = async () => {
   return recypes;
 };
 
-const createTask = async (task) => {
-  const { title } = task;
-  const dateUTC = new Date(Date.now()).toUTCString();
+const createRecype = async (recypes) => {
+  const { title, ingredients, method } = recypes;
 
-  const query = "INSERT INTO tasks(title, status, created_at) VALUES (?, ?, ?)";
+  const query =
+    "INSERT INTO recypes(title, ingredients, method) VALUES (?, ?, ?)";
 
   const [createdTask] = await connection.execute(query, [
     title,
-    "pendente",
-    dateUTC,
+    ingredients,
+    method,
   ]);
   return { insertId: createdTask.insertId };
 };
 
-const deleteTask = async (id) => {
-  const [removedTask] = await connection.execute(
-    "DELETE FROM tasks WHERE id = ?",
+const deleteRecype = async (id) => {
+  const [removedRecype] = await connection.execute(
+    "DELETE FROM recypes WHERE id = ?",
     [id]
   );
-  return removedTask;
+  return removedRecype;
 };
 
-const updateTask = async (id, task) => {
-  const { title, status } = task;
+const updateRecype = async (id, recype) => {
+  const { title, ingredients, method } = recype;
 
-  const query = "UPDATE tasks SET title = ?, status = ? WHERE id = ?";
+  const query =
+    "UPDATE tasks SET title = ?, ingredients = ?, method= ? WHERE id = ?";
 
-  const [updatedTask] = await connection.execute(query, [title, status, id]);
-  return updatedTask;
+  const [updatedRecype] = await connection.execute(query, [
+    title,
+    ingredients,
+    method,
+    id,
+  ]);
+  return updatedRecype;
 };
 
 module.exports = {
   getAll,
-  createTask,
-  deleteTask,
-  updateTask,
+  createRecype,
+  deleteRecype,
+  updateRecype,
 };

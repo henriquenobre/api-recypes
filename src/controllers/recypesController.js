@@ -1,26 +1,26 @@
-const recypesModel = require("../models/recypeModel");
+const recypeModel = require("../models/recypeModel");
 
 const getAll = async (req, res) => {
-  const recypes = await recypesModel.getAll();
+  const recypes = await recypeModel.getAll();
   return res.status(200).json(recypes);
 };
 
 const createRecype = async (req, res) => {
-  const createdRecype = await recypesModel.createRecype(req.body);
+  const createdRecype = await recypeModel.createRecype(req.body);
   return res.status(201).json(createdRecype);
 };
 
 const deleteRecype = async (req, res) => {
   const { id } = req.params;
 
-  await recypesModel.deleteRecype(id);
+  await recypeModel.deleteRecype(id);
   return res.status(204).json();
 };
 
 const updateRecype = async (req, res) => {
   const { id } = req.params;
 
-  await recypesModel.updateRecype(id, req.body);
+  await recypeModel.updateRecype(id, req.body);
   return res.status(204).json();
 };
 
